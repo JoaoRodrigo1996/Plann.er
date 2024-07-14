@@ -10,9 +10,15 @@ interface Link {
   url: string
 }
 
-export function ImportantLinks(){
+interface ImportantLinksProps {
+  openCreateLinkModal: () => void
+}
+
+export function ImportantLinks({ openCreateLinkModal }: ImportantLinksProps){
   const [links, setLinks] = useState<Link[]>([])
   const { tripId } = useParams()
+
+
 
   useEffect(() => {
     api.get(`/trips/${tripId}/links`).then(response => setLinks(response.data.links))
@@ -20,7 +26,7 @@ export function ImportantLinks(){
 
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 -z-10">
       <h2 className="font-semibold text-xl">Links importantes</h2>
       <div className="space-y-5">
         {
@@ -38,7 +44,7 @@ export function ImportantLinks(){
         }
       </div>
       
-      <Button variant="secondary" size='full'>
+      <Button onClick={openCreateLinkModal} variant="secondary" size='full'>
         <Plus className='size-5' />
         Cadastrar novo link
       </Button>
