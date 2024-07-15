@@ -1,10 +1,10 @@
 import { FormEvent, useEffect, useState } from "react";
 import { MapPin, Calendar, Settings2, X, ArrowRight } from "lucide-react";
+import { DateRange, DayPicker } from "react-day-picker";
 import { useParams } from 'react-router-dom'
+import { format } from "date-fns";
 import { Button } from "../../components/button";
 import { api } from "../../lib/axios";
-import { format } from "date-fns";
-import { DateRange, DayPicker } from "react-day-picker";
 
 interface Trip {
   id: string
@@ -76,6 +76,7 @@ export function DestinationAndDateHeader(){
               className="bg-transparent text-lg placeholder-zinc-600 outline-none flex-1 disabled:cursor-not-allowed" 
               type="text" 
               placeholder="Para onde você vai?" 
+              autoFocus
               onChange={event => setDestination(event.target.value)}
             />
           </div>

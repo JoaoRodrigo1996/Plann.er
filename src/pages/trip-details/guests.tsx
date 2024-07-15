@@ -11,7 +11,11 @@ interface Participants {
   is_confirmed: boolean
 }
 
-export function Guests(){
+interface GuestsProps {
+  openManageGuestsModal: () => void
+}
+
+export function Guests({ openManageGuestsModal }: GuestsProps){
   const [participants, setParticipants] = useState<Participants[]>([])
   const { tripId } = useParams()
 
@@ -44,7 +48,7 @@ export function Guests(){
         }
       </div>
       
-      <Button variant="secondary" size='full'>
+      <Button onClick={openManageGuestsModal} variant="secondary" size='full'>
         <UserCog className='size-5' />
         Gerenciar convidados
       </Button>
